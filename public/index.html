@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="text-center">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">Employee Management</h1>
+        <a href="/employee" class="bg-blue-500 text-white px-6 py-2 rounded-full text-lg hover:bg-blue-600">Add Employee</a>
+        <input type="text" id="EmployeeID" class="border-2 border-gray-300 p-2 rounded mt-4" placeholder="Enter Employee ID to View">
+        <button class="bg-green-500 text-white px-4 py-2 rounded ml-2" onclick="redirectToEmployee()">View Employee</button>
+    </div>
+    <script>
+        function redirectToEmployee() {
+            const EmployeeID = document.getElementById('EmployeeID').value;
+            window.location.href = `/employee/${EmployeeID}`;
+        }
+    </script>
+</body>
+
+</html>

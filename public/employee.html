@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-1/2">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Add Employee</h1>
+        <form id="employeeForm">
+            <div class="mb-4">
+                <label for="EmployeeID" class="block text-gray-700">Employee ID</label>
+                <input type="text" id="EmployeeID" name="EmployeeID" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700">Name</label>
+                <input type="text" id="name" name="name" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="position" class="block text-gray-700">Position</label>
+                <input type="text" id="position" name="position" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('employeeForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const EmployeeID = document.getElementById('EmployeeID').value;
+            const name = document.getElementById('name').value;
+            const position = document.getElementById('position').value;
+            try {
+                const response = await fetch('/api/employee', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ EmployeeID, name, position })
+                });
+                if (response.ok) {
+                    alert('Employee added successfully');
+                    window.location.href = './';
+                } else {
+                    alert('Failed to add employee');
+                }
+            } catch (error) {
+                console.error('Error adding employee:', error);
+                alert('Error adding employee');
+            }
+        });
+    </script>
+</body>
+
+</html>
